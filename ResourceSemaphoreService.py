@@ -1,9 +1,15 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
 # In-memory dictionary to store resource statuses
 resources = {}
+
+
+# Serve the HTML page for the Resource Status Manager
+@app.route('/')
+def index():
+    return render_template('ClientSetGetAutoUpdate.html')
 
 
 # Set the status of a resource (free or busy)

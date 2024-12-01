@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Status Manager</title>
+    <script>
+        // Function to set the status of a resource
+        function setStatus() {
+            const resourceId = document.getElementById('resourceId').value;
+            const status = document.querySelector('input[name="status"]:checked').value;
+
+            fetch(`/resource/${resourceId}/status`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('setStatusMessage').textContent = data.message || data.error;
+            })
+            .catch(error => {
+                console.error('Error setting status:', error);
+            });
+        }
+
+        // Function to get the current status of a resource
+        function getStatus() {
+            const resourceId = document.getElementById('resourceId').value;
+
+            fetch(`/resource/${resourceId}/status`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('currentStatus').textContent = `Resource ${data.resource_id} is ${data.status}.`;
+            })
+            .catch(error => {
+                console.error('Error getting status:', error);
+            });
+        }
+
+        // Automatically refresh the status every 10 seconds
+        setInterval(getStatus, 10000);
+    </script>
+</head>
+<body>
+    <h1>Resource Status Manager</h1>
+
+    <label for="resourceId">Resource ID:</label>
+    <input type="text" id="resourceId" placeholder="Enter resource ID">
+
+    <h2>Set Status</h2>
+    <label>
+        <input type="radio" name="status" value="free" checked> Free
+    </label>
+    <label>
+        <input type="radio" name="status" value="busy"> Busy
+    </label>
+    <button onclick="setStatus()">Set Status</button>
+    <p id="setStatusMessage"></p>
+
+    <h2>Current Status</h2>
+    <p id="currentStatus">Enter a resource ID to see its status.</p>
+</body>
+</html>
