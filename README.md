@@ -23,3 +23,11 @@ How to use:
 
 04. test_ResourceSemaphoreService.py uses server imitation (FlaskClient) from Flask to run
 requests to API. This eliminates the need for running server in separate process.
+
+
+* Docker image build (start Docker Desktop for Docker Engine get started)
+docker build -t resource-semaphore-service .
+* Run a container
+docker run -p 5000:5000 resource-semaphore-service
+*Docker is listening at http://0.0.0.0:5000 (GUnicorn)
+You may connect the services index tyemplate html with browser at http://localhost:5000
