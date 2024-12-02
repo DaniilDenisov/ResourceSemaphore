@@ -10,24 +10,24 @@ How to use:
 
 01. Server should be started for client code to work and requests are services.
     Start the service by activating venv and running:
-    cd <ResourceSemafore folder>
-    venv\Scripts\activate
-    python.exe ResourceSemaphoreService.py
+    `cd <ResourceSemafore folder>`
+    `venv\Scripts\activate`
+    `python.exe ResourceSemaphoreService.py`
 02. Go to client page:
-    http://127.0.0.1:5000/
+    `http://127.0.0.1:5000/`
     This is an index page and it's template (html) can be found in templates folder.
 03. You can also set and get status for resource with the given 'id'.
     Run following scripts for these actions:
-    python.exe SimpleClientSetResourceStatus.py
-    python.exe SimpleClientGetResourceStatus.py
+    `python.exe SimpleClientSetResourceStatus.py`
+    `python.exe SimpleClientGetResourceStatus.py`
 
 04. test_ResourceSemaphoreService.py uses server imitation (FlaskClient) from Flask to run
 requests to API. This eliminates the need for running server in separate process.
 
 
 * Docker image build (start Docker Desktop for Docker Engine get started)
-docker build -t resource-semaphore-service .
+`docker build -t resource-semaphore-service .`
 * Run a container
-docker run -p 5000:5000 resource-semaphore-service
-*Docker is listening at http://0.0.0.0:5000 (GUnicorn)
-You may connect the services index tyemplate html with browser at http://localhost:5000
+`docker run -p 5000:5000 resource-semaphore-service`
+* Docker is listening at http://0.0.0.0:5000 (GUnicorn)
+You may connect the services index tyemplate html with browser at `http://localhost:5000`
